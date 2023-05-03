@@ -141,6 +141,7 @@ def mpc_robot_interactive(args, gym_instance):
     
 
     # get camera data:
+    # import pdb; pdb.set_trace()
     mpc_control = ReacherTask(task_file, robot_file, world_file, tensor_args)
 
     n_dof = mpc_control.controller.rollout_fn.dynamics_model.n_dofs
@@ -160,6 +161,9 @@ def mpc_robot_interactive(args, gym_instance):
 
     franka_bl_state = np.array([-0.3, 0.3, 0.2, -2.0, 0.0, 2.4,0.0,
                                 0.0,0.0,0.0,0.0,0.0,0.0,0.0])
+    
+    # franka_bl_state = np.array([0, 0.3, 0.2, -2.0, 0.0, 2.4,0.0,
+    #                             0.0,0.0,0.0,0.0,0.0,0.0,0.0])
     x_des_list = [franka_bl_state]
     
     ee_error = 10.0
@@ -169,6 +173,10 @@ def mpc_robot_interactive(args, gym_instance):
     x_des = x_des_list[0]
     
     mpc_control.update_params(goal_state=x_des)
+    print("=====================")
+    print(mpc_control.controller.rollout_fn.goal_ee_pos)
+    print("=====================")
+    # input()
 
     # spawn object:
     x,y,z = 0.0, 0.0, 0.0
@@ -203,7 +211,7 @@ def mpc_robot_interactive(args, gym_instance):
         tray_color = gymapi.Vec3(0.0, 0.8, 0.0)
         gym.set_rigid_body_color(env_ptr, ee_handle, 0, gymapi.MESH_VISUAL_AND_COLLISION, tray_color)
 
-
+    # import pdb; pdb.set_trace()
     g_pos = np.ravel(mpc_control.controller.rollout_fn.goal_ee_pos.cpu().numpy())
     
     g_q = np.ravel(mpc_control.controller.rollout_fn.goal_ee_quat.cpu().numpy())
@@ -256,7 +264,9 @@ def mpc_robot_interactive(args, gym_instance):
             current_robot_state = copy.deepcopy(robot_sim.get_state(env_ptr, robot_ptr))
             
 
-            
+            print("==================================")
+            print(current_robot_state)
+            print("==================================")
             command = mpc_control.get_command(t_step, current_robot_state, control_dt=sim_dt, WAIT=True)
 
             filtered_state_mpc = current_robot_state #mpc_control.current_state

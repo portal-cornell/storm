@@ -40,7 +40,8 @@
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
     <!--limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/-->
-    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    <!-- <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/> -->
+    <limit effort="87" lower="-2.3093" upper="2.3093" velocity="2.0"/>
   </joint>
   <link name="panda_link2">
     <visual>
@@ -61,7 +62,7 @@
     <child link="panda_link2"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="87" lower="-1.7628" upper="1.7628" velocity="2.1750"/>
+    <limit effort="87" lower="-1.5133" upper="1.5133" velocity="1.0"/>
   </joint>
   <link name="panda_link3">
     <visual>
@@ -82,7 +83,7 @@
     <child link="panda_link3"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    <limit effort="87" lower="-2.4937" upper="2.4937" velocity="1.50"/>
   </joint>
   <link name="panda_link4">
     <visual>
@@ -103,7 +104,7 @@
     <child link="panda_link4"/>
     <axis xyz="0 0 1"/>    
     <dynamics damping="10.0"/>
-    <limit effort="87" lower="-3.0718" upper="-0.0698" velocity="2.1750"/>
+    <limit effort="87" lower="-2.7478" upper="-0.4461" velocity="1.25"/>
     <!-- something is weird with this joint limit config
     <dynamics damping="10.0"/>
     <limit effort="87" lower="-3.0" upper="0.087" velocity="2.1750"/>  -->
@@ -127,7 +128,7 @@
     <child link="panda_link5"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+    <limit effort="12" lower="-2.4800" upper="2.4800" velocity="3.00"/>
   </joint>
   <link name="panda_link6">
     <visual>
@@ -148,7 +149,7 @@
     <child link="panda_link6"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="12" lower="-0.0175" upper="3.7525" velocity="2.6100"/>
+    <limit effort="12" lower="0.8521" upper="4.2094" velocity="1.50"/>
     <!-- <dynamics damping="10.0"/>
     <limit effort="12" lower="-0.0873" upper="3.0" velocity="2.6100"/> -->
   </joint>
@@ -171,7 +172,7 @@
     <child link="panda_link7"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+    <limit effort="12" lower="-2.6895" upper="2.6895" velocity="3.00"/>
   </joint>
   <!--
   <link name="panda_link8"/>
