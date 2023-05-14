@@ -127,29 +127,30 @@ class Franka_Realworld():
         joint_pose = [-0.09515199, -1.27960808, -0.17832713, -2.67556323, -0.05136292,  1.94429217, 0.57877946]
         # x_des_list = [franka_bl_state]
         
-        franka_bl_state = np.array([-0.095, -1.28, -0.18, -2.7, -0.05, 1.94,0.58,
-                                    0.0,0.0,0.0,0.0,0.0,0.0,0.0])
+        # franka_bl_state = np.array([-0.0, -0.782, -0.0, -2.35, -0.0, 1.56,0.585,
+        #                             0.0,0.0,0.0,0.0,0.0,0.0,0.0])
+
         ee_error = 10.0
         j = 0
         t_step = 0
         i = 0
         mpc_control.update_params(goal_state=franka_bl_state)
-        sim_dt = mpc_control.exp_params['control_dt']
-
+        sim_dt = 1/50.0
+        rate = rospy.Rate(50)
+        done = False
+        start_time = rospy.get_time()
         while(i > -100):
+            if done: break
             try:
                 current_robot_state = self.get_current_state()
-                # input()
-                # print(current_robot_state)
                 command = mpc_control.get_command(t_step, current_robot_state, control_dt=sim_dt, WAIT=True)
                 q_des = copy.deepcopy(command['position'])
                 qd_des = copy.deepcopy(command['velocity']) #* 0.5
                 qdd_des = copy.deepcopy(command['acceleration'])
                 print(q_des, qd_des, qdd_des)
-                input()
                 self.publish_command(q_des, qd_des, qdd_des)
-                # break
-                i+=1
+                t_step = rospy.get_time()-start_time
+                rate.sleep()
             except KeyboardInterrupt:
                 print('Closing')
                 done = True
