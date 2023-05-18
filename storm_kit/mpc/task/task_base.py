@@ -81,9 +81,10 @@ class BaseTask():
         return state_tensor
     def get_current_error(self, curr_state):
         state_tensor = self._state_to_tensor(curr_state).to(**self.controller.tensor_args).unsqueeze(0)
-
+        # print("STATE TENSOR", state_tensor.shape)
         
         ee_error,_ = self.controller.rollout_fn.current_cost(state_tensor)
+        # print("EE_error", ee_error)
         ee_error = [x.detach().cpu().item() for x in ee_error]
         return ee_error
 

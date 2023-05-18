@@ -39,76 +39,110 @@ np.set_printoptions(precision=2)
 
 import copy
 import rospy
-from sensor_msgs.msg import JointState
 import tf2_ros
 from geometry_msgs.msg import TransformStamped
-from visualization_msgs.msg import Marker
+from visualization_msgs.msg import Marker, MarkerArray
 
 from std_msgs.msg import Float32
-from geometry_msgs.msg import WrenchStamped
-
+from sensor_msgs.msg import JointState
+from geometry_msgs.msg import PoseStamped
+import json
+import yaml
+import time
 
 
 class Franka_Realworld():
-    def __init__(self):
+    def __init__(self, world_file='example.yml'):
         rospy.init_node('realworld', anonymous=True)
+        self.ee_sub = rospy.Subscriber('/ee_goal', PoseStamped, self.ee_callback, queue_size=1000)
         self.joint_state_pub = rospy.Publisher('/franka_motion_control/joint_command', JointState, queue_size=1)
+        self.objects_pub = rospy.Publisher('/objects', MarkerArray, queue_size=1)
         self.joint_state_sub = rospy.Subscriber('/joint_states', JointState, self.js_callback, queue_size=1)
         self.js = None
-        # input()
-        # self.publish()
+        self.world_file = world_file
+        self.g_pos = np.array([0.5, 0.2, 0.4])
+        self.g_q = np.array([ 0, 0.7071068, 0.7071068, 0])
+        self.publish_objects()
+    
+    def publish_objects(self):
+        marker_array = MarkerArray()
+        world_yml = join_path(get_gym_configs_path(), self.world_file)
+        with open(world_yml, 'r') as file:
+            world_params = yaml.load(file, Loader=yaml.FullLoader)
+        obj_id = 0
+        if 'sphere' in world_params['world_model']['coll_objs']:
+            spheres = world_params['world_model']['coll_objs']['sphere']
+            for k, v in spheres.items():
+                marker = Marker()
+                marker.header.frame_id = 'panda_link0'
+                marker.header.stamp = rospy.Time.now()
+                marker.type = marker.SPHERE
+                marker.ns = k
+                marker.id = obj_id
+                obj_id += 1
+                marker.scale.x = v['radius']
+                marker.scale.y = v['radius']
+                marker.scale.z = v['radius']
+                marker.pose.position.x = v['position'][0]
+                marker.pose.position.y = v['position'][1]
+                marker.pose.position.z = v['position'][2]
+                marker.color.r = 1
+                marker.color.a = 1
+                marker_array.markers.append(marker)
+        if 'cube' in world_params['world_model']['coll_objs']:
+            cubes = world_params['world_model']['coll_objs']['cube']
+            for k, v in cubes.items():
+                marker = Marker()
+                marker.header.frame_id = 'panda_link0'
+                marker.header.stamp = rospy.Time.now()
+                marker.type = marker.CUBE
+                marker.ns = k
+                marker.id = obj_id
+                obj_id += 1
+                marker.scale.x = v['dims'][0]
+                marker.scale.y = v['dims'][1]
+                marker.scale.z = v['dims'][2]
+                # print(v)
+                marker.pose.position.x = v['pose'][0]
+                marker.pose.position.y = v['pose'][1]
+                marker.pose.position.z = v['pose'][2]
+                marker.pose.orientation.w = 1.0
+                marker.color.g = 1
+                marker.color.a = 1
+                marker_array.markers.append(marker)
+        # import pdb; pdb.set_trace()
         
+        self.objects_pub.publish(marker_array)
     def js_callback(self, js):
-        # print(type(data))
-        # print(js.position)
         self.js = js
-        
-        
-    def publish(self):
-        js_copy = copy.deepcopy(self.js)
-        pos = js_copy.position
-        pos_t = tuple([p+0.000 for p in pos])
-        print(pos_t)
-        js_copy.position = pos_t
-        self.joint_state_pub.publish(js_copy)
+
+    def ee_callback(self, ee):
+        print("INNNNNNNNNNNNNNNNNNNNNNNNNNNNN")
+        # input()
+        # print(ee_pose)
+        self.g_pos = np.array([ee.pose.position.x, ee.pose.position.y, ee.pose.position.z])
+        self.g_q = np.array([ee.pose.orientation.w, ee.pose.orientation.x, ee.pose.orientation.y, ee.pose.orientation.z])
     
     def get_current_state(self):
-        # import pdb; pdb.set_trace()
-
-        return {'name': self.js.name[:], 'position': np.array(self.js.position[:]), \
-                'velocity': np.array(self.js.velocity[:]), 'acceleration': np.array(self.js.effort[:])}
+        return {'name': self.js.name[:-2], 'position': np.array(self.js.position[:-2]), \
+                'velocity': np.array(self.js.velocity[:-2]), 'acceleration': np.array(self.js.effort[:-2])}
 
     def publish_command(self, q_des, qd_des, qdd_des):
-        js_copy = copy.deepcopy(self.js)
-        pos = js_copy.position
-        # import pdb; pdb.set_trace()
-        # blank_list = [0, 0.0]
-        # blank_list.extend(list(q_des))
-        # q_des = blank_list
-        # blank_list = [0, 0.0]
-        # blank_list.extend(list(qd_des))
-        # qd_des = blank_list
-        # blank_list = [0, 0.0]
-        # blank_list.extend(list(qdd_des))
-        # qdd_des = blank_list
-        # print(q_des)
-        # input()
-        # pos_t = tuple([p+0.000 for p in pos])
-        # print(pos_t)
-        # import pdb; pdb.set_trace()
-        js_copy.position = tuple(q_des)
-        js_copy.velocity = tuple(qd_des)
-        js_copy.effort = tuple(qdd_des)
-        # print(js_copy)
-        # input("SENDING")
-        self.joint_state_pub.publish(js_copy)
+        pub_command = JointState()
+        pub_command.header.stamp = rospy.Time.now()
+        pub_command.name = [f'panda_joint{idx}' for idx in range(7)]
+        pub_command.position = q_des
+        pub_command.velocity = qd_des
+        pub_command.effort = qdd_des
+        self.joint_state_pub.publish(pub_command)
 
     def mpc_robot_interactive(self, args):
         robot_file = args.robot + '.yml'
         task_file = args.robot + '_reacher.yml'
-        world_file = 'collision_primitives_3d.yml'
+        world_file = 'example.yml'
 
         device = torch.device('cuda', 0)
+        print(device)
         tensor_args = {'device':device, 'dtype':torch.float32} 
 
         mpc_control = ReacherTask(task_file, robot_file, world_file, tensor_args)
@@ -134,20 +168,41 @@ class Franka_Realworld():
         j = 0
         t_step = 0
         i = 0
-        mpc_control.update_params(goal_state=franka_bl_state)
-        sim_dt = 1/50.0
-        rate = rospy.Rate(50)
+        # mpc_control.update_params(goal_state=franka_bl_state)
+        g_pos = np.array([0.5, 0.3, 0.5])
+        g_q = np.array([ 0, 0.7071068, 0.7071068, 0])
+        g_q = np.array([ 0.5, 0.5, 0.5, 0.5 ])
+        
+        
+        freq = 100
+        sim_dt = 1.0/freq
+        rate = rospy.Rate(freq)
         done = False
         start_time = rospy.get_time()
         while(i > -100):
             if done: break
             try:
+                # self.publish_objects()
                 current_robot_state = self.get_current_state()
+                ct_start = time.time()
+                mpc_control.update_params(goal_ee_pos=self.g_pos, goal_ee_quat=self.g_q)
+                ct_end = time.time()
+                print(ct_start, ct_end, ct_end-ct_start)
+                print("GOAL POSE = ", self.g_pos)
+                print("GOAL QUAT = ", self.g_q)
                 command = mpc_control.get_command(t_step, current_robot_state, control_dt=sim_dt, WAIT=True)
                 q_des = copy.deepcopy(command['position'])
                 qd_des = copy.deepcopy(command['velocity']) #* 0.5
                 qdd_des = copy.deepcopy(command['acceleration'])
-                print(q_des, qd_des, qdd_des)
+                # print(q_des, qd_des, qdd_des)
+                filtered_state_mpc = current_robot_state #mpc_control.current_state
+                curr_state = np.hstack((filtered_state_mpc['position'], filtered_state_mpc['velocity'], filtered_state_mpc['acceleration']))
+                curr_state_tensor = torch.as_tensor(curr_state, **tensor_args).unsqueeze(0)
+                pose_state = mpc_control.controller.rollout_fn.get_ee_pose(curr_state_tensor)
+                print("EE POSE STATE = ", pose_state['ee_pos_seq'].cpu().numpy())
+                print("EE QUAT STATE = ", pose_state['ee_quat_seq'].cpu().numpy())
+                ee_error = mpc_control.get_current_error(current_robot_state)
+                # print(len(ee_error))
                 self.publish_command(q_des, qd_des, qdd_des)
                 t_step = rospy.get_time()-start_time
                 rate.sleep()
@@ -158,8 +213,7 @@ class Franka_Realworld():
         mpc_control.close()
         return 1 
     
-if __name__ == '__main__':
-    
+if __name__ == '__main__': 
     # instantiate empty gym:
     parser = argparse.ArgumentParser(description='pass args')
     parser.add_argument('--robot', type=str, default='franka', help='Robot to spawn')

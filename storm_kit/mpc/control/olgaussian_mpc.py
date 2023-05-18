@@ -190,7 +190,7 @@ class OLGaussianMPC(Controller):
 
         act_seq = self.mean_action.unsqueeze(0) + scaled_delta
         
-
+        # print("ACTION LOW/HIGHS = ", self.action_lows, self.action_highs)
         act_seq = scale_ctrl(act_seq, self.action_lows, self.action_highs, squash_fn=self.squash_fn)
         
 

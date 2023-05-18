@@ -56,6 +56,7 @@ class ArmReacher(ArmBase):
         cost = super(ArmReacher, self).cost_fn(state_dict, action_batch, no_coll, horizon_cost)
         ee_pos_batch, ee_rot_batch = state_dict['ee_pos_seq'], state_dict['ee_rot_seq']
         
+        
         state_batch = state_dict['state_seq']
         goal_ee_pos = self.goal_ee_pos
         goal_ee_rot = self.goal_ee_rot
@@ -75,6 +76,13 @@ class ArmReacher(ArmBase):
             cost += self.dist_cost.forward(disp_vec)
 
         if(return_dist):
+            # print("EE_POS SHAPE = ", ee_pos_batch.shape)
+            # print("EE POSE = ", ee_pos_batch)
+            # print("GOAL POSE = ", goal_ee_pos)
+            # print("GOAL COST = ", goal_cost)
+            # print("COST = ", cost)
+            # print("ROT ERR = ", rot_err_norm)
+            # print("goal_dist = ", goal_dist)
             return cost, rot_err_norm, goal_dist
 
             

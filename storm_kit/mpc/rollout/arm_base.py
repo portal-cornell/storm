@@ -160,8 +160,9 @@ class ArmBase(RolloutBase):
                                                 proj_type='identity',
                                                 dist_type='squared_l2')
         cost = null_disp_cost
-
+        # print(f"NO coll = {no_coll}, horizon_cost = {horizon_cost} ")
         if(no_coll == True and horizon_cost == False):
+            # print("ARM BASE = ", cost)
             return cost
         if(self.exp_params['cost']['manipulability']['weight'] > 0.0):
             cost += self.manipulability_cost.forward(J_full)

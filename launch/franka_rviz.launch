@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <param name="robot_description" command="xacro '$(find franka_description)/robots/fr3/fr3.urdf.xacro' arm_id:=panda hand:=true"/>
+  <param name="use_gui" value="false" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(dirname)/../rviz/config.rviz" required="true"/>        
+
+</launch>
