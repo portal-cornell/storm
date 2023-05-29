@@ -78,6 +78,7 @@ class ControlProcess(object):
         # predict next state
         # given current t_step, integrate to t_step+mpc_dt
         t1_idx = find_first_idx(self.command_tstep, t_step) - 1
+        # print(self.command_tstep, t_step, self.mpc_dt)
         t2_idx = find_first_idx(self.command_tstep, t_step + self.mpc_dt) #- 1
 
         # integrate from t1->t2

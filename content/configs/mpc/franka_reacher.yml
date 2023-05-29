@@ -106,7 +106,6 @@ cost:
     distance_threshold: 0.05
     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':10.0}
     
-
   null_space:
     weight: 1.0 #0.01 #0.05 #0.5 #1.0
     gaussian_params: {'n':0, 'c':0.0, 's':0, 'r':1.0}
@@ -161,15 +160,15 @@ cost:
   retract_weight: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0]
 
 mppi:
-  horizon           : 200
-  init_cov          : 0.005 #.5 #.5
+  horizon           : 25
+  init_cov          : 0.01 #.5 #.5
   gamma             : 0.98
   n_iters           : 1
   step_size_mean    : 0.98
   step_size_cov     : 0.7
   beta              : 1.0
   alpha             : 1
-  num_particles     : 1000 #10000
+  num_particles     : 700 #10000
   update_cov        : False
   cov_type          : 'diag_AxA' # 
   kappa             : 0.005

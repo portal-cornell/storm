@@ -23,11 +23,13 @@
 import torch
 import torch.autograd.profiler as profiler
 
-from ...differentiable_robot_model.coordinate_transform import matrix_to_quaternion, quaternion_to_matrix
-from ..cost import DistCost, PoseCost, ZeroCost, FiniteDifferenceCost
+from ..cost import PrimitiveCollisionCost
 from ...mpc.rollout.arm_reacher import ArmReacher
 
 import rospy
+import numpy as np
+import math
+from visualization_msgs.msg import Marker, MarkerArray
 
 class ArmHuman(ArmReacher):
     """
@@ -41,25 +43,19 @@ class ArmHuman(ArmReacher):
         super(ArmHuman, self).__init__(exp_params=exp_params,
                                          tensor_args=tensor_args,
                                          world_params=world_params)
-        self.goal_state = None
-        self.goal_ee_pos = None
-        self.goal_ee_rot = None
-        
-        device = self.tensor_args['device']
-        float_dtype = self.tensor_args['dtype']
-        self.human_current_pose_subscriber = None
-        self.human_forecast_pose_subscriber = None
-        self.dist_cost = DistCost(**self.exp_params['cost']['joint_l2'], device=device,float_dtype=float_dtype)
-
-        self.goal_cost = PoseCost(**exp_params['cost']['goal_pose'],
-                                  tensor_args=self.tensor_args)
-        
+        self.current_human_pose = None
+        self.forecast_human_pose = None
+        self.world_params = None
+    
 
     def cost_fn(self, state_dict, action_batch, no_coll=False, horizon_cost=True, return_dist=False):
-
         cost = super(ArmHuman, self).cost_fn(state_dict, action_batch, no_coll, horizon_cost)
-        ee_pos_batch, ee_rot_batch = state_dict['ee_pos_seq'], state_dict['ee_rot_seq']
-        
-        cost += self.get_human_cost()
+        if self.current_human_pose is None:
+            return cost
+        # primitive_collision_cost = PrimitiveCollisionCost(world_params=self.world_params, robot_params=self.exp_params['robot_params'], tensor_args=self.tensor_args, **self.exp_params['cost']['primitive_collision'])
+        # link_pos_batch, link_rot_batch = state_dict['link_pos_seq'], state_dict['link_rot_seq']
+        # if(not no_coll):
+        #     human_coll_cost = primitive_collision_cost.forward(link_pos_batch, link_rot_batch)
+        #     cost += human_coll_cost
         return cost
     

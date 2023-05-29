@@ -32,6 +32,7 @@ def create_msg(pose, euler):
     pose_msg.pose.position.z = pose[2]
     quat = euler_to_quaternion(euler)
     print("QUAT = ", quat)
+    input("check")
     pose_msg.pose.orientation.x = quat[0]
     pose_msg.pose.orientation.y = quat[1]
     pose_msg.pose.orientation.z = quat[2]
