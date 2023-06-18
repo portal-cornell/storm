@@ -5,12 +5,14 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /MarkerArray1
         - /TF1/Frames1
         - /Pose1
+        - /MarkerArray2
         - /Odometry1/Shape1
         - /Path1
       Splitter Ratio: 0.385294109582901
-    Tree Height: 363
+    Tree Height: 1079
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -23,6 +25,7 @@ Panels:
   - Class: rviz/Views
     Expanded:
       - /Current View1
+      - /Current View1/Focal Point1
     Name: Views
     Splitter Ratio: 0.5
   - Class: rviz/Time
@@ -52,7 +55,7 @@ Visualization Manager:
       Cell Size: 1
       Class: rviz/Grid
       Color: 160; 160; 164
-      Enabled: false
+      Enabled: true
       Line Style:
         Line Width: 0.029999999329447746
         Value: Lines
@@ -65,7 +68,7 @@ Visualization Manager:
       Plane: XY
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
-      Value: false
+      Value: true
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -205,123 +208,204 @@ Visualization Manager:
         current-RShoulderBack_RElbowOut: true
         current-WaistLBack_WaistRBack: true
         current-WaistRBack_RShoulderBack: true
-        forecast-0-BackTop_LShoulderBack: true
-        forecast-0-BackTop_RShoulderBack: true
-        forecast-0-LElbowOut_LWristOut: true
-        forecast-0-LShoulderBack_LElbowOut: true
-        forecast-0-LShoulderBack_WaistLBack: true
-        forecast-0-RElbowOut_RWristOut: true
-        forecast-0-RShoulderBack_RElbowOut: true
-        forecast-0-WaistLBack_WaistRBack: true
-        forecast-0-WaistRBack_RShoulderBack: true
-        forecast-10-BackTop_LShoulderBack: true
-        forecast-10-BackTop_RShoulderBack: true
-        forecast-10-LElbowOut_LWristOut: true
-        forecast-10-LShoulderBack_LElbowOut: true
-        forecast-10-LShoulderBack_WaistLBack: true
-        forecast-10-RElbowOut_RWristOut: true
-        forecast-10-RShoulderBack_RElbowOut: true
-        forecast-10-WaistLBack_WaistRBack: true
-        forecast-10-WaistRBack_RShoulderBack: true
-        forecast-12-BackTop_LShoulderBack: true
-        forecast-12-BackTop_RShoulderBack: true
-        forecast-12-LElbowOut_LWristOut: true
-        forecast-12-LShoulderBack_LElbowOut: true
-        forecast-12-LShoulderBack_WaistLBack: true
-        forecast-12-RElbowOut_RWristOut: true
-        forecast-12-RShoulderBack_RElbowOut: true
-        forecast-12-WaistLBack_WaistRBack: true
-        forecast-12-WaistRBack_RShoulderBack: true
-        forecast-14-BackTop_LShoulderBack: true
-        forecast-14-BackTop_RShoulderBack: true
-        forecast-14-LElbowOut_LWristOut: true
-        forecast-14-LShoulderBack_LElbowOut: true
-        forecast-14-LShoulderBack_WaistLBack: true
-        forecast-14-RElbowOut_RWristOut: true
-        forecast-14-RShoulderBack_RElbowOut: true
-        forecast-14-WaistLBack_WaistRBack: true
-        forecast-14-WaistRBack_RShoulderBack: true
-        forecast-16-BackTop_LShoulderBack: true
-        forecast-16-BackTop_RShoulderBack: true
-        forecast-16-LElbowOut_LWristOut: true
-        forecast-16-LShoulderBack_LElbowOut: true
-        forecast-16-LShoulderBack_WaistLBack: true
-        forecast-16-RElbowOut_RWristOut: true
-        forecast-16-RShoulderBack_RElbowOut: true
-        forecast-16-WaistLBack_WaistRBack: true
-        forecast-16-WaistRBack_RShoulderBack: true
-        forecast-18-BackTop_LShoulderBack: true
-        forecast-18-BackTop_RShoulderBack: true
-        forecast-18-LElbowOut_LWristOut: true
-        forecast-18-LShoulderBack_LElbowOut: true
-        forecast-18-LShoulderBack_WaistLBack: true
-        forecast-18-RElbowOut_RWristOut: true
-        forecast-18-RShoulderBack_RElbowOut: true
-        forecast-18-WaistLBack_WaistRBack: true
-        forecast-18-WaistRBack_RShoulderBack: true
-        forecast-2-BackTop_LShoulderBack: true
-        forecast-2-BackTop_RShoulderBack: true
-        forecast-2-LElbowOut_LWristOut: true
-        forecast-2-LShoulderBack_LElbowOut: true
-        forecast-2-LShoulderBack_WaistLBack: true
-        forecast-2-RElbowOut_RWristOut: true
-        forecast-2-RShoulderBack_RElbowOut: true
-        forecast-2-WaistLBack_WaistRBack: true
-        forecast-2-WaistRBack_RShoulderBack: true
-        forecast-20-BackTop_LShoulderBack: true
-        forecast-20-BackTop_RShoulderBack: true
-        forecast-20-LElbowOut_LWristOut: true
-        forecast-20-LShoulderBack_LElbowOut: true
-        forecast-20-LShoulderBack_WaistLBack: true
-        forecast-20-RElbowOut_RWristOut: true
-        forecast-20-RShoulderBack_RElbowOut: true
-        forecast-20-WaistLBack_WaistRBack: true
-        forecast-20-WaistRBack_RShoulderBack: true
-        forecast-22-BackTop_LShoulderBack: true
-        forecast-22-BackTop_RShoulderBack: true
-        forecast-22-LElbowOut_LWristOut: true
-        forecast-22-LShoulderBack_LElbowOut: true
-        forecast-22-LShoulderBack_WaistLBack: true
-        forecast-22-RElbowOut_RWristOut: true
-        forecast-22-RShoulderBack_RElbowOut: true
-        forecast-22-WaistLBack_WaistRBack: true
-        forecast-22-WaistRBack_RShoulderBack: true
-        forecast-24-BackTop_LShoulderBack: true
-        forecast-24-BackTop_RShoulderBack: true
-        forecast-24-LElbowOut_LWristOut: true
-        forecast-24-LShoulderBack_LElbowOut: true
-        forecast-24-LShoulderBack_WaistLBack: true
-        forecast-24-RElbowOut_RWristOut: true
-        forecast-24-RShoulderBack_RElbowOut: true
-        forecast-24-WaistLBack_WaistRBack: true
-        forecast-24-WaistRBack_RShoulderBack: true
-        forecast-4-BackTop_LShoulderBack: true
-        forecast-4-BackTop_RShoulderBack: true
-        forecast-4-LElbowOut_LWristOut: true
-        forecast-4-LShoulderBack_LElbowOut: true
-        forecast-4-LShoulderBack_WaistLBack: true
-        forecast-4-RElbowOut_RWristOut: true
-        forecast-4-RShoulderBack_RElbowOut: true
-        forecast-4-WaistLBack_WaistRBack: true
-        forecast-4-WaistRBack_RShoulderBack: true
-        forecast-6-BackTop_LShoulderBack: true
-        forecast-6-BackTop_RShoulderBack: true
-        forecast-6-LElbowOut_LWristOut: true
-        forecast-6-LShoulderBack_LElbowOut: true
-        forecast-6-LShoulderBack_WaistLBack: true
-        forecast-6-RElbowOut_RWristOut: true
-        forecast-6-RShoulderBack_RElbowOut: true
-        forecast-6-WaistLBack_WaistRBack: true
-        forecast-6-WaistRBack_RShoulderBack: true
-        forecast-8-BackTop_LShoulderBack: true
-        forecast-8-BackTop_RShoulderBack: true
-        forecast-8-LElbowOut_LWristOut: true
-        forecast-8-LShoulderBack_LElbowOut: true
-        forecast-8-LShoulderBack_WaistLBack: true
-        forecast-8-RElbowOut_RWristOut: true
-        forecast-8-RShoulderBack_RElbowOut: true
-        forecast-8-WaistLBack_WaistRBack: true
-        forecast-8-WaistRBack_RShoulderBack: true
+        forecast0-BackTop_LShoulderBack: true
+        forecast0-BackTop_RShoulderBack: true
+        forecast0-LElbowOut_LWristOut: true
+        forecast0-LShoulderBack_LElbowOut: true
+        forecast0-LShoulderBack_WaistLBack: true
+        forecast0-RElbowOut_RWristOut: true
+        forecast0-RShoulderBack_RElbowOut: true
+        forecast0-WaistLBack_WaistRBack: true
+        forecast0-WaistRBack_RShoulderBack: true
+        forecast1-BackTop_LShoulderBack: true
+        forecast1-BackTop_RShoulderBack: true
+        forecast1-LElbowOut_LWristOut: true
+        forecast1-LShoulderBack_LElbowOut: true
+        forecast1-LShoulderBack_WaistLBack: true
+        forecast1-RElbowOut_RWristOut: true
+        forecast1-RShoulderBack_RElbowOut: true
+        forecast1-WaistLBack_WaistRBack: true
+        forecast1-WaistRBack_RShoulderBack: true
+        forecast10-BackTop_LShoulderBack: true
+        forecast10-BackTop_RShoulderBack: true
+        forecast10-LElbowOut_LWristOut: true
+        forecast10-LShoulderBack_LElbowOut: true
+        forecast10-LShoulderBack_WaistLBack: true
+        forecast10-RElbowOut_RWristOut: true
+        forecast10-RShoulderBack_RElbowOut: true
+        forecast10-WaistLBack_WaistRBack: true
+        forecast10-WaistRBack_RShoulderBack: true
+        forecast11-BackTop_LShoulderBack: true
+        forecast11-BackTop_RShoulderBack: true
+        forecast11-LElbowOut_LWristOut: true
+        forecast11-LShoulderBack_LElbowOut: true
+        forecast11-LShoulderBack_WaistLBack: true
+        forecast11-RElbowOut_RWristOut: true
+        forecast11-RShoulderBack_RElbowOut: true
+        forecast11-WaistLBack_WaistRBack: true
+        forecast11-WaistRBack_RShoulderBack: true
+        forecast12-BackTop_LShoulderBack: true
+        forecast12-BackTop_RShoulderBack: true
+        forecast12-LElbowOut_LWristOut: true
+        forecast12-LShoulderBack_LElbowOut: true
+        forecast12-LShoulderBack_WaistLBack: true
+        forecast12-RElbowOut_RWristOut: true
+        forecast12-RShoulderBack_RElbowOut: true
+        forecast12-WaistLBack_WaistRBack: true
+        forecast12-WaistRBack_RShoulderBack: true
+        forecast13-BackTop_LShoulderBack: true
+        forecast13-BackTop_RShoulderBack: true
+        forecast13-LElbowOut_LWristOut: true
+        forecast13-LShoulderBack_LElbowOut: true
+        forecast13-LShoulderBack_WaistLBack: true
+        forecast13-RElbowOut_RWristOut: true
+        forecast13-RShoulderBack_RElbowOut: true
+        forecast13-WaistLBack_WaistRBack: true
+        forecast13-WaistRBack_RShoulderBack: true
+        forecast14-BackTop_LShoulderBack: true
+        forecast14-BackTop_RShoulderBack: true
+        forecast14-LElbowOut_LWristOut: true
+        forecast14-LShoulderBack_LElbowOut: true
+        forecast14-LShoulderBack_WaistLBack: true
+        forecast14-RElbowOut_RWristOut: true
+        forecast14-RShoulderBack_RElbowOut: true
+        forecast14-WaistLBack_WaistRBack: true
+        forecast14-WaistRBack_RShoulderBack: true
+        forecast15-BackTop_LShoulderBack: true
+        forecast15-BackTop_RShoulderBack: true
+        forecast15-LElbowOut_LWristOut: true
+        forecast15-LShoulderBack_LElbowOut: true
+        forecast15-LShoulderBack_WaistLBack: true
+        forecast15-RElbowOut_RWristOut: true
+        forecast15-RShoulderBack_RElbowOut: true
+        forecast15-WaistLBack_WaistRBack: true
+        forecast15-WaistRBack_RShoulderBack: true
+        forecast16-BackTop_LShoulderBack: true
+        forecast16-BackTop_RShoulderBack: true
+        forecast16-LElbowOut_LWristOut: true
+        forecast16-LShoulderBack_LElbowOut: true
+        forecast16-LShoulderBack_WaistLBack: true
+        forecast16-RElbowOut_RWristOut: true
+        forecast16-RShoulderBack_RElbowOut: true
+        forecast16-WaistLBack_WaistRBack: true
+        forecast16-WaistRBack_RShoulderBack: true
+        forecast17-BackTop_LShoulderBack: true
+        forecast17-BackTop_RShoulderBack: true
+        forecast17-LElbowOut_LWristOut: true
+        forecast17-LShoulderBack_LElbowOut: true
+        forecast17-LShoulderBack_WaistLBack: true
+        forecast17-RElbowOut_RWristOut: true
+        forecast17-RShoulderBack_RElbowOut: true
+        forecast17-WaistLBack_WaistRBack: true
+        forecast17-WaistRBack_RShoulderBack: true
+        forecast18-BackTop_LShoulderBack: true
+        forecast18-BackTop_RShoulderBack: true
+        forecast18-LElbowOut_LWristOut: true
+        forecast18-LShoulderBack_LElbowOut: true
+        forecast18-LShoulderBack_WaistLBack: true
+        forecast18-RElbowOut_RWristOut: true
+        forecast18-RShoulderBack_RElbowOut: true
+        forecast18-WaistLBack_WaistRBack: true
+        forecast18-WaistRBack_RShoulderBack: true
+        forecast19-BackTop_LShoulderBack: true
+        forecast19-BackTop_RShoulderBack: true
+        forecast19-LElbowOut_LWristOut: true
+        forecast19-LShoulderBack_LElbowOut: true
+        forecast19-LShoulderBack_WaistLBack: true
+        forecast19-RElbowOut_RWristOut: true
+        forecast19-RShoulderBack_RElbowOut: true
+        forecast19-WaistLBack_WaistRBack: true
+        forecast19-WaistRBack_RShoulderBack: true
+        forecast2-BackTop_LShoulderBack: true
+        forecast2-BackTop_RShoulderBack: true
+        forecast2-LElbowOut_LWristOut: true
+        forecast2-LShoulderBack_LElbowOut: true
+        forecast2-LShoulderBack_WaistLBack: true
+        forecast2-RElbowOut_RWristOut: true
+        forecast2-RShoulderBack_RElbowOut: true
+        forecast2-WaistLBack_WaistRBack: true
+        forecast2-WaistRBack_RShoulderBack: true
+        forecast20-BackTop_LShoulderBack: true
+        forecast20-BackTop_RShoulderBack: true
+        forecast20-LElbowOut_LWristOut: true
+        forecast20-LShoulderBack_LElbowOut: true
+        forecast20-LShoulderBack_WaistLBack: true
+        forecast20-RElbowOut_RWristOut: true
+        forecast20-RShoulderBack_RElbowOut: true
+        forecast20-WaistLBack_WaistRBack: true
+        forecast20-WaistRBack_RShoulderBack: true
+        forecast21-BackTop_LShoulderBack: true
+        forecast21-BackTop_RShoulderBack: true
+        forecast21-LElbowOut_LWristOut: true
+        forecast21-LShoulderBack_LElbowOut: true
+        forecast21-LShoulderBack_WaistLBack: true
+        forecast21-RElbowOut_RWristOut: true
+        forecast21-RShoulderBack_RElbowOut: true
+        forecast21-WaistLBack_WaistRBack: true
+        forecast21-WaistRBack_RShoulderBack: true
+        forecast3-BackTop_LShoulderBack: true
+        forecast3-BackTop_RShoulderBack: true
+        forecast3-LElbowOut_LWristOut: true
+        forecast3-LShoulderBack_LElbowOut: true
+        forecast3-LShoulderBack_WaistLBack: true
+        forecast3-RElbowOut_RWristOut: true
+        forecast3-RShoulderBack_RElbowOut: true
+        forecast3-WaistLBack_WaistRBack: true
+        forecast3-WaistRBack_RShoulderBack: true
+        forecast4-BackTop_LShoulderBack: true
+        forecast4-BackTop_RShoulderBack: true
+        forecast4-LElbowOut_LWristOut: true
+        forecast4-LShoulderBack_LElbowOut: true
+        forecast4-LShoulderBack_WaistLBack: true
+        forecast4-RElbowOut_RWristOut: true
+        forecast4-RShoulderBack_RElbowOut: true
+        forecast4-WaistLBack_WaistRBack: true
+        forecast4-WaistRBack_RShoulderBack: true
+        forecast5-BackTop_LShoulderBack: true
+        forecast5-BackTop_RShoulderBack: true
+        forecast5-LElbowOut_LWristOut: true
+        forecast5-LShoulderBack_LElbowOut: true
+        forecast5-LShoulderBack_WaistLBack: true
+        forecast5-RElbowOut_RWristOut: true
+        forecast5-RShoulderBack_RElbowOut: true
+        forecast5-WaistLBack_WaistRBack: true
+        forecast5-WaistRBack_RShoulderBack: true
+        forecast6-BackTop_LShoulderBack: true
+        forecast6-BackTop_RShoulderBack: true
+        forecast6-LElbowOut_LWristOut: true
+        forecast6-LShoulderBack_LElbowOut: true
+        forecast6-LShoulderBack_WaistLBack: true
+        forecast6-RElbowOut_RWristOut: true
+        forecast6-RShoulderBack_RElbowOut: true
+        forecast6-WaistLBack_WaistRBack: true
+        forecast6-WaistRBack_RShoulderBack: true
+        forecast7-BackTop_LShoulderBack: true
+        forecast7-BackTop_RShoulderBack: true
+        forecast7-LElbowOut_LWristOut: true
+        forecast7-LShoulderBack_LElbowOut: true
+        forecast7-LShoulderBack_WaistLBack: true
+        forecast7-RElbowOut_RWristOut: true
+        forecast7-RShoulderBack_RElbowOut: true
+        forecast7-WaistLBack_WaistRBack: true
+        forecast7-WaistRBack_RShoulderBack: true
+        forecast8-BackTop_LShoulderBack: true
+        forecast8-BackTop_RShoulderBack: true
+        forecast8-LElbowOut_LWristOut: true
+        forecast8-LShoulderBack_LElbowOut: true
+        forecast8-LShoulderBack_WaistLBack: true
+        forecast8-RElbowOut_RWristOut: true
+        forecast8-RShoulderBack_RElbowOut: true
+        forecast8-WaistLBack_WaistRBack: true
+        forecast8-WaistRBack_RShoulderBack: true
+        forecast9-BackTop_LShoulderBack: true
+        forecast9-BackTop_RShoulderBack: true
+        forecast9-LElbowOut_LWristOut: true
+        forecast9-LShoulderBack_LElbowOut: true
+        forecast9-LShoulderBack_WaistLBack: true
+        forecast9-RElbowOut_RWristOut: true
+        forecast9-RShoulderBack_RElbowOut: true
+        forecast9-WaistLBack_WaistRBack: true
+        forecast9-WaistRBack_RShoulderBack: true
       Queue Size: 100
       Value: true
     - Class: rviz/TF
@@ -358,13 +442,13 @@ Visualization Manager:
       Unreliable: false
       Value: true
     - Class: rviz/MarkerArray
-      Enabled: true
+      Enabled: false
       Marker Topic: /objects
       Name: MarkerArray
       Namespaces:
         {}
       Queue Size: 100
-      Value: true
+      Value: false
     - Angle Tolerance: 0.10000000149011612
       Class: rviz/Odometry
       Covariance:
@@ -403,8 +487,8 @@ Visualization Manager:
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
-      Color: 239; 41; 41
-      Enabled: true
+      Color: 245; 121; 0
+      Enabled: false
       Head Diameter: 0.30000001192092896
       Head Length: 0.20000000298023224
       Length: 0.30000001192092896
@@ -423,10 +507,10 @@ Visualization Manager:
       Shaft Length: 0.10000000149011612
       Topic: /ee_path
       Unreliable: false
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
-    Background Color: 186; 189; 182
+    Background Color: 211; 215; 207
     Default Light: true
     Fixed Frame: panda_link0
     Frame Rate: 30
@@ -452,7 +536,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.8181803226470947
+      Distance: 1.9704314470291138
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -460,17 +544,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 1.1993472576141357
-        Y: 0.4395920932292938
-        Z: 0.9163105487823486
-      Focal Shape Fixed Size: true
+        X: 0.7001320719718933
+        Y: 0.4574640393257141
+        Z: 1.0699337720870972
+      Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.469796895980835
+      Pitch: 1.2247971296310425
       Target Frame: <Fixed Frame>
-      Yaw: 4.685521125793457
+      Yaw: 4.707262992858887
     Saved: ~
 Window Geometry:
   Displays:
@@ -480,7 +564,7 @@ Window Geometry:
   Hide Right Dock: true
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd000000040000000000000156000004c2fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073000000003d000004c2000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006502000000000000003d00000280000001e0fb0000000a0049006d00610067006501000002b9000002460000000000000000000000010000010f000002b0fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d000002b0000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004dc0000003efc0100000002fb0000000800540069006d00650100000000000004dc000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000004dc000004c200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd000000040000000000000159000004c2fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073000000003d000004c2000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006502000000000000003d00000280000001e0fb0000000a0049006d00610067006501000002b9000002460000000000000000000000010000010f000004c2fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d000004c2000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000009b80000003efc0100000002fb0000000800540069006d00650100000000000009b8000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000009b8000004c200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -489,6 +573,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: true
-  Width: 1244
+  Width: 2488
   X: 72
   Y: 27

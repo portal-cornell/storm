@@ -30,7 +30,7 @@ import rospy
 import numpy as np
 import math
 from visualization_msgs.msg import Marker, MarkerArray
-
+from ...differentiable_robot_model.coordinate_transform import matrix_to_quaternion, quaternion_to_matrix
 class ArmHuman(ArmReacher):
     """
     This rollout function is for reaching a cartesian pose for a robot
@@ -46,12 +46,55 @@ class ArmHuman(ArmReacher):
         self.current_human_pose = None
         self.forecast_human_pose = None
         self.world_params = None
-    
+        self.forecast_type = None
 
+    def update_params(self, retract_state=None, goal_state=None, 
+                      goal_ee_pos=None, goal_ee_rot=None, 
+                      goal_ee_quat=None, current_human_pose=None,
+                      forecast_human_pose=None,
+                      forecast_type=None):
+        """
+        Update params for the cost terms and dynamics model.
+        goal_state: n_dofs
+        goal_ee_pos: 3
+        goal_ee_rot: 3,3
+        goal_ee_quat: 4
+
+        """
+        
+        super(ArmHuman, self).update_params(goal_ee_pos=goal_ee_pos,
+                                           goal_ee_rot=goal_ee_rot,
+                                           goal_ee_quat=goal_ee_quat,
+                                           goal_state=goal_state,
+                                           retract_state=retract_state)
+        
+        if current_human_pose is not None:
+            self.current_human_pose = current_human_pose
+        if forecast_human_pose is not None:
+            self.forecast_human_pose = forecast_human_pose
+        if forecast_type is not None:
+            self.forecast_type = forecast_type
+        return True
+    
     def cost_fn(self, state_dict, action_batch, no_coll=False, horizon_cost=True, return_dist=False):
         cost = super(ArmHuman, self).cost_fn(state_dict, action_batch, no_coll, horizon_cost)
-        if self.current_human_pose is None:
+        # return cost
+        if self.forecast_human_pose is None:
             return cost
+        ee_pos_batch, ee_rot_batch = state_dict['ee_pos_seq'], state_dict['ee_rot_seq']
+        
+        if self.forecast_type == "forecast":
+            wrist_pos = torch.Tensor([self.forecast_human_pose[(t//5+1)*5-1]['RWristOut'].tolist() for t in range(25)]).to(self.tensor_args['device'])
+        else:
+            wrist_pos = torch.Tensor([self.current_human_pose['RWristOut'].tolist() for t in range(25)]).to(self.tensor_args['device'])
+        # import pdb; pdb.set_trace()
+        dist = ee_pos_batch-wrist_pos
+        dist = torch.linalg.norm(dist[:, :, :2], dim=2)
+        human_cost = 5000*(dist < 0.1)*0.8
+        # print(dist)
+        # import pdb; pdb.set_trace()
+        print(human_cost.min())
+        cost += human_cost
         # primitive_collision_cost = PrimitiveCollisionCost(world_params=self.world_params, robot_params=self.exp_params['robot_params'], tensor_args=self.tensor_args, **self.exp_params['cost']['primitive_collision'])
         # link_pos_batch, link_rot_batch = state_dict['link_pos_seq'], state_dict['link_rot_seq']
         # if(not no_coll):
